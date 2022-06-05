@@ -1,0 +1,14 @@
+[features]
+seeds = false
+[programs.localnet]
+votingapp = "HULc9TCrcv5XUunafCBt1VEsdAMXvMHao7YoujHQLvY1"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "/home/aks/.config/solana/id.json"
+
+[scripts]
+test = "yarn run mocha -t 1000000 tests/"
