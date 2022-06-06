@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-declare_id!("HULc9TCrcv5XUunafCBt1VEsdAMXvMHao7YoujHQLvY1");
+declare_id!("8gv2WGHr41F6bBRakKWcCPM41irZMBvSwR93aC6mLQuK");
 
 #[program]
 pub mod votingapp {

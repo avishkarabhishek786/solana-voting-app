@@ -1,0 +1,70 @@
+{
+    "version": "0.1.0",
+    "name": "votingapp",
+    "instructions": [
+      {
+        "name": "initialize",
+        "accounts": [
+          {
+            "name": "voteAccount",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "user",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "voteJohnny",
+        "accounts": [
+          {
+            "name": "voteAccount",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "voteAmber",
+        "accounts": [
+          {
+            "name": "voteAccount",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      }
+    ],
+    "accounts": [
+      {
+        "name": "VoteAccount",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "johnny",
+              "type": "u64"
+            },
+            {
+              "name": "amber",
+              "type": "u64"
+            }
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "address": "8gv2WGHr41F6bBRakKWcCPM41irZMBvSwR93aC6mLQuK"
+    }
+  }
