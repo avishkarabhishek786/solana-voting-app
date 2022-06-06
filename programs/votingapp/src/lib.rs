@@ -4,11 +4,9 @@ declare_id!("8gv2WGHr41F6bBRakKWcCPM41irZMBvSwR93aC6mLQuK");
 #[program]
 pub mod votingapp {
     use super::*;
-    
+
     pub fn initialize(ctx: Context<Initialize>) -> Result <()> {
-        let vote_account = &mut ctx.accounts.vote_account;
-        vote_account.johnny = 0;
-        vote_account.amber = 0;
+        ctx.accounts.vote_account.bump = *ctx.bumps.get("bump").unwrap();
         Ok(())
     }
     
@@ -25,21 +23,24 @@ pub mod votingapp {
 }
 
 #[derive(Accounts)]
+#[instruction(vote_account_bump: u8)]
 pub struct Initialize<'info> {
-    #[account(init, payer = user, space = 16 + 16)]
-    pub vote_account: Account<'info, VoteAccount>,
+    #[account(init, seeds = [b"vote_account".as_ref()], bump, payer = user, space = 16 + 16)]
+    vote_account: Account<'info, VotingState>,
     #[account(mut)]
-    pub user: Signer<'info>,
-    pub system_program: Program <'info, System>,
+    user: Signer<'info>,
+    system_program: Program<'info, System>,
 }
 #[derive(Accounts)]
 pub struct Vote<'info> {
-    #[account(mut)]
-    pub vote_account: Account<'info, VoteAccount>,
+    #[account(mut, seeds = [b"vote_account".as_ref()], bump = vote_account.bump)]
+    vote_account: Account<'info, VotingState>,
 }
 
 #[account]
-pub struct VoteAccount {
-    pub johnny: u64,
-    pub amber: u64,
+#[derive(Default)]
+pub struct VotingState {
+    johnny: u64,
+    amber: u64,
+    bump: u8,
 }
